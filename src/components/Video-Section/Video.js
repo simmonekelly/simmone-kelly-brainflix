@@ -1,10 +1,8 @@
-import React from 'react'
+import React from 'react';
 
-function Video() {
+function Video(props) {
     return (
-        <div>
-            This is the video
-        </div>
+        <img src={props.mainVideo.image} className="video-image" />
     )
 }
 

@@ -1,0 +1,25 @@
+.next-videos{
+    padding: 0 16px;
+
+    &_container {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        align-content: center;
+        padding-bottom: 16px;
+    }
+
+    &_image {
+        border-radius: 4px;
+        width: 40%;
+    }
+
+    &_text-contianer {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &_header {
+        padding-bottom: 16px;
+    }
+}

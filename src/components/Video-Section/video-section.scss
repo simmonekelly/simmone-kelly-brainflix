@@ -1,4 +1,56 @@
-.video-info__container{
-    display: flex;
-    flex-direction: row;
+@use '../../styles/partials/colors-fonts' as *;
+
+.video {
+
+    &-image {
+        width: 100%;
+    }
+
+    &-title {
+        padding: 24px 0 16px;
+        border-bottom: 1px solid $mercury;
+    }
+
+    .video-description {
+        @extend .video-title;
+        border-bottom: 0;
+    }
+
+    &-info {
+        padding: 0 16px;
+    }
+
+    &-info__container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 16px 0;
+        border-bottom: solid 1px $mercury;
+    }
+
+    &-info_mobile {
+        width: 80%;
+
+        p {
+            color: $silver;
+        }
+
+        .info_top-row {
+            padding-bottom: 16px;
+        }
+    }
+
+    &-info_views-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    &-info_likes-container{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+    }
 }

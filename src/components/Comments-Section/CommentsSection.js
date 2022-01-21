@@ -1,6 +1,9 @@
 import React from 'react'
 import PostedComments from './PostedComments'
 import VideoData from '../../data/video-details.json';
+import './comment-section.scss'
+import CommentsForm from './CommentsForm';
+import avatar from '../../assets/images/Mohan-muruge.jpg';
 
 function CommentsSection() {
 
@@ -10,13 +13,11 @@ function CommentsSection() {
     console.log(dataJsx)
 
     return (
-        <section>
-            <p>
-                Number of Comments
-            </p>
-            <p>
-                Comments Form
-            </p>
+        <section className="comments">
+            <h3 className="comment-total">
+                {VideoData[0].comments.length} Comments
+            </h3>
+            <CommentsForm formAvatar={avatar}/>
             {dataJsx}
         </section>
     )
