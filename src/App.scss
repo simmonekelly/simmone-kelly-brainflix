@@ -10,6 +10,13 @@ h1 {
     line-height: 32px;
     font-weight: 600;
     margin: 0;
+
+    @include tablet {
+        font-size: 33px;
+        line-height: 44px;
+        font-weight: 700;
+    
+    }
 }
 
 h2 {
@@ -18,21 +25,35 @@ h2 {
     font-weight: 600;
     margin: 0;
     color: $silver;
+
+    @include tablet {
+        font-weight: 700;
+    }
 }
 
 
 h3 {
-font-size: 13px;
-line-height: 18px;
-font-weight: 600;
-margin: 0;
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 600;
+    margin: 0;
+
+    @include tablet {
+        font-size: 14px;
+        line-height: 22px;
+    }
 }
 
 p {
-font-size: 13px;
-line-height: 18px;
-font-weight: 500;
-margin: 0;
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 500;
+    margin: 0;
+
+    @include tablet {
+        font-size: 14px;
+        line-height: 22px;
+    }
 }
 
 button {
@@ -57,7 +78,6 @@ button {
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    padding: 8px;
     margin: 0;
 }
 

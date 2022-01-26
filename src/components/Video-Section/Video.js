@@ -2,7 +2,7 @@ import React from 'react';
 
 function Video(props) {
     return (
-        <img src={props.mainVideo.image} className="video-image" />
+        <img src={props.currentVideo.image} className="video-image" />
     )
 }
 

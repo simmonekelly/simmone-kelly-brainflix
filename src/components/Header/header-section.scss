@@ -6,8 +6,17 @@
     align-items: center;
     padding: 24px 16px 16px;
 
+    @include tablet {
+        padding: 26px 36px 16px;
+        flex-direction: row;
+    }
+
     &-logo {
         padding-bottom: 16px;
+
+        @include tablet {
+            padding-bottom: 0;
+        }
     }
 
     &-form {
@@ -17,6 +26,10 @@
         justify-content: space-between;
         width: 100%;
         align-items: center;
+
+        @include tablet {
+            padding-bottom: 0;
+        }
     }
 
     &-button {
@@ -31,4 +44,20 @@
 .header-form__avatar {
     max-width: 36px;
     max-height: 36px;
+
+}
+
+.mobile-avatar {
+
+    @include tablet {
+        display: none;
+    }
+}
+
+.tablet-avatar {
+    display: none;
+    
+    @include tablet {
+        display: block;
+    }
 }

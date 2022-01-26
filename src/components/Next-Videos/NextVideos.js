@@ -1,21 +1,18 @@
 import React from 'react';
-import NextVideoData from '../../data/videos.json';
-import NextVideosList from './NextVideosList';
-import './next-videos.scss';
 
-console.log(NextVideoData)
-
-function NextVideos() {
-
-    const videoListJsx = NextVideoData.map((elemnt, index) => {
-        return <NextVideosList videoList ={elemnt} key={'video' + index} />;
-    })
-
+function NextVideos(props) {
+    
     return (
-        <section className="next-videos">
-            <h2>NEXT VIDEOS</h2>
-            {videoListJsx}
-        </section>
+
+        <div className="next-videos_container" onClick={ () => props.getNewId(props.NextVideo.id)}>
+            <div className="next-videos_image-container">
+                <img src={props.NextVideo.image} className="next-videos_image"/>
+            </div>
+            <div className="next-videos_text-contianer">
+                <h3 className="next-videos_header">{props.NextVideo.title}</h3>
+                <p>{props.NextVideo.channel}</p>
+            </div>
+        </div>
     )
 }
 

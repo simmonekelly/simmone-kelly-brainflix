@@ -3,13 +3,15 @@ import './header-section.scss';
 import HeaderButton from './HeaderButton';
 import HeaderForm from './HeaderForm';
 import HeaderLogo from './HeaderLogo';
+import avatar from '../../assets/images/Mohan-muruge.jpg';
 
 function Header() {
     return (
         <section className="header">
             <HeaderLogo />
-            <HeaderForm />
+            <HeaderForm avatar={avatar} />
             <HeaderButton />
+            <img src={avatar} className="header-form__avatar tablet-avatar" />
         </section>
     )
 }

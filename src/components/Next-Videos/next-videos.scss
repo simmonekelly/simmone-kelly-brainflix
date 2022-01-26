@@ -1,5 +1,15 @@
+@use '../../styles/partials/colors-fonts' as *;
+
 .next-videos{
-    padding: 0 16px;
+    padding: 24px 16px 0;
+
+    @include tablet {
+        padding: 24px 36px 0;
+    }
+
+    &_header {
+        padding-bottom: 16px;
+    }
 
     &_container {
         display: flex;
@@ -7,14 +17,22 @@
         align-items: flex-start;
         align-content: center;
         padding-bottom: 16px;
+        justify-content: space-between;
+    }
+
+    &_image-container{
+        width: 35%;
+        
     }
 
     &_image {
+        width: 100%;
         border-radius: 4px;
-        width: 40%;
+        object-fit: cover;
     }
 
     &_text-contianer {
+        width: 60%;
         display: flex;
         flex-direction: column;
     }

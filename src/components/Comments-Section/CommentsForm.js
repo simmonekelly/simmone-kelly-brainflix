@@ -1,7 +1,7 @@
 import React from 'react'
 
 function CommentsForm(props) {
-    console.log(props)
+    
     return (
         <div className="comments-form">
             <img src={props.formAvatar} className="form-avatar"/>

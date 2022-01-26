@@ -1,33 +1,42 @@
-import logo from './logo.svg';
+import React, { Component } from 'react'
 import './App.scss';
 import Header from './components/Header/Header';
 import VideoSection from './components/Video-Section/VideoSection';
 import CommentsSection from './components/Comments-Section/CommentsSection';
-import NextVideos from './components/Next-Videos/NextVideos';
+import NextVideoSection from './components/Next-Videos/NextVideoSection';
+import VideoData from './data/video-details.json';
+import NextVideosData from './data/videos.json';
 
-function App() {
-  return (
-    <div className="App">
-      <Header />
-      <VideoSection />
-      <CommentsSection />
-      <NextVideos />
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-    </div>
-  );
+export default class App extends Component {
+
+  // constructor() {
+  //   super();
+  //   this.state = {videoId: VideoData[0].id}
+  // }
+
+  state = {
+    videoId: VideoData[0].id
+  };
+
+  getNewId = (id) => {
+    const newVideoIndex = VideoData.findIndex(element => element.id === id);
+    this.setState({
+     videoId: VideoData[newVideoIndex].id
+    })
+  }
+
+  render() {
+    console.log(VideoData);
+    const currentVideoIndex = VideoData.findIndex(element => element.id === this.state.videoId);
+    console.log(currentVideoIndex)
+
+    return (
+      <div className="App">
+        <Header />
+        <VideoSection currentVideo={VideoData[currentVideoIndex]} />
+        <CommentsSection currentVideoComments={VideoData[currentVideoIndex].comments} />
+        <NextVideoSection getNewId={this.getNewId} nextVideosList={NextVideosData} currentVideo={VideoData[currentVideoIndex].id} />
+      </div>
+    )
+  }
 }
-
-export default App;

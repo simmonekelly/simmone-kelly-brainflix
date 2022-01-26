@@ -9,6 +9,10 @@
     &-title {
         padding: 24px 0 16px;
         border-bottom: 1px solid $mercury;
+
+        @include tablet {
+            border-bottom: 0px
+        }
     }
 
     .video-description {
@@ -18,6 +22,10 @@
 
     &-info {
         padding: 0 16px;
+
+        @include tablet {
+            padding: 0 36px;
+        }
     }
 
     &-info__container {
@@ -26,10 +34,22 @@
         justify-content: space-between;
         padding: 16px 0;
         border-bottom: solid 1px $mercury;
+
+        @include tablet {
+            padding-top: 0;
+        }
+
     }
 
     &-info_mobile {
         width: 80%;
+
+        @include tablet {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 30%;
+        }
 
         p {
             color: $silver;
@@ -37,6 +57,10 @@
 
         .info_top-row {
             padding-bottom: 16px;
+
+            @include tablet {
+                padding-bottom: 0;
+            }
         }
     }
 

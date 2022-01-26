@@ -2,13 +2,13 @@ import React from 'react';
 import Video from './Video';
 import VideoInfo from './VideoInfo';
 import './video-section.scss';
-import VideoData from '../../data/video-details.json';
 
-function VideoSection() {
+function VideoSection(props) {
+    
     return (
         <section className="video">
-            <Video mainVideo={VideoData[0]}/>
-            <VideoInfo mainVideo={VideoData[0]}/>
+            <Video currentVideo={props.currentVideo}/>
+            <VideoInfo currentVideo={props.currentVideo}/>
         </section>
     )
 }
