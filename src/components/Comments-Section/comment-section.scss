@@ -7,12 +7,21 @@
         padding: 0 36px;
     }
 
+    @include desktop {
+        padding: 0;
+    }
+
     &-form {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         border-bottom: 1px solid #E1E1E1;
         padding-bottom: 16px;
+
+        @include desktop {
+            padding-right: 36px;
+            border-bottom: 0;
+        }
 
         form {
             width: 75%;
@@ -79,6 +88,12 @@
     align-items: flex-start;
     padding: 24px 0 16px;
     border-bottom: solid 1px #E1E1E1;
+
+    @include desktop {
+        padding-right: 36px;
+        border-top: solid 1px #E1E1E1;
+        border-bottom: 0;
+    }
 
     &_avatar {
         width: 36px;

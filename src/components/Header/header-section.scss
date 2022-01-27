@@ -11,6 +11,12 @@
         flex-direction: row;
     }
 
+    @include desktop {
+        padding: 26px 63px 16px;
+        margin: 0 auto;
+        max-width: 1280px;
+    }
+
     &-logo {
         padding-bottom: 16px;
 
@@ -30,21 +36,50 @@
         @include tablet {
             padding-bottom: 0;
         }
+
+        &_field {
+
+            input {
+                background-image: url('../../assets/images/icons/search.svg');
+                background-repeat: no-repeat;
+                background-position: left;
+                background-position-x: 5%;
+                width: 95%;
+                border-radius: 4px;
+                padding: 12px 12px 12px 36px;
+                border: 1px solid $mercury;
+            }
+        }
+
+        &_avatar {
+            min-width: 36px;
+            min-height: 36px;
+            border-radius: 50%;
+            margin: 0;
+            max-height: 40px;
+            max-width: 40px;
+        }
     }
 
     &-button {
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
         width: 100%;
+
+        @include tablet {
+            min-width: 150px;
+        }
+
+
+        p {
+            font-size: 12px;
+            line-height: 20px;
+            font-weight: 700;
+            width: 100%;
+        }
     }
-}
-
-.header-form__avatar {
-    max-width: 36px;
-    max-height: 36px;
-
 }
 
 .mobile-avatar {

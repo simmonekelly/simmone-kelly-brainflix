@@ -6,6 +6,7 @@ import CommentsSection from './components/Comments-Section/CommentsSection';
 import NextVideoSection from './components/Next-Videos/NextVideoSection';
 import VideoData from './data/video-details.json';
 import NextVideosData from './data/videos.json';
+import DesktopVideo from './components/Desktop-Video/DesktopVideo';
 
 export default class App extends Component {
 
@@ -33,9 +34,14 @@ export default class App extends Component {
     return (
       <div className="App">
         <Header />
-        <VideoSection currentVideo={VideoData[currentVideoIndex]} />
-        <CommentsSection currentVideoComments={VideoData[currentVideoIndex].comments} />
-        <NextVideoSection getNewId={this.getNewId} nextVideosList={NextVideosData} currentVideo={VideoData[currentVideoIndex].id} />
+        <DesktopVideo currentVideo={VideoData[currentVideoIndex]} />
+        <div className="desktop-container">
+          <div className="desktop-videodetails-container">
+            <VideoSection currentVideo={VideoData[currentVideoIndex]} />
+            <CommentsSection currentVideoComments={VideoData[currentVideoIndex].comments} />
+          </div>
+          <NextVideoSection getNewId={this.getNewId} nextVideosList={NextVideosData} currentVideo={VideoData[currentVideoIndex].id} />
+        </div>
       </div>
     )
   }

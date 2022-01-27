@@ -11,7 +11,7 @@ function Header() {
             <HeaderLogo />
             <HeaderForm avatar={avatar} />
             <HeaderButton />
-            <img src={avatar} className="header-form__avatar tablet-avatar" />
+            <img src={avatar} className="header-form_avatar tablet-avatar" />
         </section>
     )
 }

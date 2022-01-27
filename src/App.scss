@@ -74,21 +74,8 @@ button {
     }
 }
 
-.form-avatar {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    margin: 0;
-}
 
 .form-field {
-
-    input {
-        width: 90%;
-        border-radius: 4px;
-        padding: 12px;
-        border: 1px solid $mercury;
-    }
 
     textarea {
         width: 100%;
@@ -98,4 +85,23 @@ button {
         border: 1px solid $mercury;
     }
     
+}
+
+.desktop-container {
+
+    @include desktop {
+        display: flex;
+        flex-direction: row;
+        margin: 0 auto;
+        max-width: 1280px;
+        padding: 0 63px;
+    }
+}
+
+.desktop-videodetails-container {
+
+    @include desktop {
+        width: 75%;
+        border-right: solid 1px $silver;
+    }
 }

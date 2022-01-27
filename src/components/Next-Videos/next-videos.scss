@@ -7,6 +7,11 @@
         padding: 24px 36px 0;
     }
 
+    @include desktop {
+        width: 25%;
+        padding-right: 0;
+    }
+
     &_header {
         padding-bottom: 16px;
     }

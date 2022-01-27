@@ -2,7 +2,11 @@ import React from 'react';
 
 function Video(props) {
     return (
-        <img src={props.currentVideo.image} className="video-image" />
+        <section className="video-mainvideo">
+            <video poster={props.currentVideo.image} controls="play" />
+        </section>
+        
+        
     )
 }
 

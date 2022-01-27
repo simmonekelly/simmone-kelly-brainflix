@@ -1,0 +1,15 @@
+@use '../../styles/partials/colors-fonts' as *;
+
+.desktop-video {
+    display: none;
+
+    @include desktop {
+        display: flex;
+        justify-content: center;
+        background-color: $brainflix-darkblack;
+
+        &_video {
+            width: 50%;
+        }
+    }
+}
