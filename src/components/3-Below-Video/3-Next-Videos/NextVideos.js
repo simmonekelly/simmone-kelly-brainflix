@@ -9,7 +9,7 @@ function NextVideos(props) {
                 <img src={props.NextVideo.image} className="next-videos_image"/>
             </div>
             <div className="next-videos_text-contianer">
-                <h3 className="next-videos_header">{props.NextVideo.title}</h3>
+                <h3>{props.NextVideo.title}</h3>
                 <p>{props.NextVideo.channel}</p>
             </div>
         </div>

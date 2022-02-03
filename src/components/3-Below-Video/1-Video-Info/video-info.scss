@@ -1,48 +1,8 @@
-@use '../../styles/partials/colors-fonts' as *;
+@use '../../../styles/partials/colors-fonts' as *;
 
-.video {
+.video-info {
 
-    &-mainvideo {
-        
-        @include tablet {
-            display: flex;
-            justify-content: center;
-            background-color: $brainflix-darkblack;
-        }
-
-        @include desktop {
-            display: none;
-        }
-
-        video {
-            width: 100%;
-
-            @include tablet {
-                width: 90%;
-            }
-        }
-    }
-
-    &-title {
-        padding: 24px 0 16px;
-        border-bottom: 1px solid $mercury;
-
-        @include tablet {
-            border-bottom: 0px
-        }
-    }
-
-    .video-description {
-        @extend .video-title;
-        border-bottom: 0;
-
-        @include desktop {
-            padding-right: 36px;
-        }
-    }
-
-    &-info {
-        padding: 0 16px;
+    padding: 0 16px;
 
         @include tablet {
             padding: 0 36px;
@@ -51,9 +11,17 @@
         @include desktop {
             padding: 0;
         }
+
+    &_title {
+        padding: 24px 0 16px;
+        border-bottom: 1px solid $mercury;
+
+        @include tablet {
+            border-bottom: 0px
+        }
     }
 
-    &-info__container {
+    &_container {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -70,7 +38,7 @@
 
     }
 
-    &-info_mobile {
+    &_mobile {
         width: 80%;
 
         @include tablet {
@@ -93,17 +61,25 @@
         }
     }
 
-    &-info_views-container {
+    &_views-container {
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: space-evenly;
+        justify-content: space-between;
+        width: 70%;
+
     }
 
-    &-info_likes-container{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-evenly;
+    &_likes-container{
+        @extend .video-info_views-container;
+    }
+
+    &_description {
+        @extend .video-info_title;
+        border-bottom: 0;
+
+        @include desktop {
+            padding-right: 36px;
+        }
     }
 }

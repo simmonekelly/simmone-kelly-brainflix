@@ -3,7 +3,7 @@ import React from 'react'
 function VideoDescription(props) {
     
     return (
-        <p className="video-description">
+        <p className="video-info_description">
             {props.descriptionData}
         </p>
     )

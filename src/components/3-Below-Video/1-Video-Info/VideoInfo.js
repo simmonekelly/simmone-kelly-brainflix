@@ -2,6 +2,7 @@ import React from 'react'
 import VideoTitle from './VideoTitle';
 import VideoDetails from './VideoDetails';
 import VideoDescription from './VideoDescription';
+import './video-info.scss';
 
 function VideoInfo(props) {
     

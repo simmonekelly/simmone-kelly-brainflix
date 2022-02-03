@@ -1,10 +1,10 @@
 import React from 'react';
-import viewsIcon from '../../assets/images/icons/views.svg';
-import likesIcon from '../../assets/images/icons/likes.svg';
+import viewsIcon from '../../../assets/images/icons/views.svg';
+import likesIcon from '../../../assets/images/icons/likes.svg';
 
 function VideoDetails(props) {
     return (
-        <div className="video-info__container">
+        <div className="video-info_container">
             <div className="video-info_mobile">
                 <h3 className="info_top-row">By {props.detailsData.channel}</h3>
                 <p>{new Intl.DateTimeFormat("en-US", {

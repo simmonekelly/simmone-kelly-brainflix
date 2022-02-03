@@ -2,7 +2,7 @@ import React from 'react';
 import PostedComments from './PostedComments';
 import './comment-section.scss';
 import CommentsForm from './CommentsForm';
-import avatar from '../../assets/images/Mohan-muruge.jpg';
+import avatar from '../../../assets/images/Mohan-muruge.jpg';
 
 function CommentsSection(props) {
 
@@ -19,7 +19,3 @@ function CommentsSection(props) {
 }
 
 export default CommentsSection
-
-//         const videoDataJsx = VideoData[currentVideoIndex].comments.map((element, index) => {
-//             return <PostedComments currentVideo={element} key={'comments' + index} />;
-//         })
