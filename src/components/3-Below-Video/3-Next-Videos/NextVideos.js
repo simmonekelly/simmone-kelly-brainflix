@@ -1,9 +1,10 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 function NextVideos(props) {
-    
-    return (
 
+    return (
+        <Link className="next-videos_link" to={"/" + props.NextVideo.id}>
         <div className="next-videos_container" onClick={ () => props.getNewId(props.NextVideo.id)}>
             <div className="next-videos_image-container">
                 <img src={props.NextVideo.image} className="next-videos_image"/>
@@ -13,6 +14,7 @@ function NextVideos(props) {
                 <p>{props.NextVideo.channel}</p>
             </div>
         </div>
+        </Link>
     )
 }
 

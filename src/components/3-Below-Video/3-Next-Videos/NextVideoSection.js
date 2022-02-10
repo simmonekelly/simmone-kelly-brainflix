@@ -3,11 +3,16 @@ import NextVideos from './NextVideos';
 import './next-videos.scss';
 
 function NextVideoSection(props) {
-
+    console.log(props)
+    
     const filteredVideoList = props.nextVideosList.filter(element => element.id != props.currentVideo);
 
     const videoDataJsx = filteredVideoList.map((element) => {
-        return <NextVideos NextVideo ={element} key={element.id} getNewId={props.getNewId} />;
+        return <NextVideos
+                    NextVideo ={element}
+                    key={element.id}
+                    getNewId={props.getNewId}
+                    routerProps={props.routerProps} />;
     })
 
     return (

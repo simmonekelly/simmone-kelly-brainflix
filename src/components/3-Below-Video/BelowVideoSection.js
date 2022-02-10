@@ -11,7 +11,11 @@ function BelowVideoSection(props) {
                 <VideoInfo currentVideo={props.currentVideo} />
                 <CommentsSection currentVideoComments={props.currentVideo.comments} />
             </div>
-            <NextVideoSection getNewId={props.getNewId} nextVideosList={props.nextVideosList} currentVideo={props.currentVideo.id} />
+            <NextVideoSection
+                getNewId={props.getNewId}
+                nextVideosList={props.nextVideosList}
+                currentVideo={props.currentVideo.id}
+                routerProps={props.routerProps} />
         </div>
     )
 }

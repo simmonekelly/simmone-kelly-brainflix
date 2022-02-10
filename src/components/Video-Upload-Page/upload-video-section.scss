@@ -1,0 +1,80 @@
+@use '../../styles/partials/colors-fonts' as *;
+
+.uploadvideo-seciton {
+    display: flex;
+    flex-direction: column;
+    padding: 0 16px;
+}
+
+.uploadvideo-form {
+
+    width: 100%;
+
+    &_container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &_thumbnail {
+        width: 100%;
+        border-radius: 4px;
+        padding-bottom: 16px;
+    }
+
+    &_field{
+        padding-bottom: 16px;
+
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+            min-height: 36px;
+            border-radius: 4px;
+            padding: 12px;
+            border: 1px solid $mercury;
+            font-family: Avenir Next;
+            color: $brainflix-black;
+        }
+
+        input {
+            @extend textarea
+        }
+
+        label {
+            text-transform: uppercase;
+        }
+    }
+
+    &_button {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        @include tablet {
+            width: 160px;
+            padding: 0 32px;
+        }
+
+        p {
+            font-size: 12px;
+            line-height: 20px;
+            font-weight: 700;
+            width: 100%;
+        }
+    }
+}
+
+.uploadvideo-title {
+    padding: 24px 0 16px;
+    border-top: 1px solid $mercury;
+
+    @include tablet {
+        border-bottom: 0px
+    }
+}
+
+.uploadvideo-subtitle {
+    padding: 24px 0 16px;
+    text-transform: uppercase;
+}

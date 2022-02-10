@@ -1,36 +1,24 @@
-import React, { Component } from 'react'
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import './App.scss';
 import Header from './components/1-Header/Header';
-import VideoData from './data/video-details.json';
-import NextVideosData from './data/videos.json';
-import Video from './components/2-Video/Video';
-import BelowVideoSection from './components/3-Below-Video/BelowVideoSection';
+import HomePage from './components/Home-Page/HomePage';
+import VideoUploadPage from './components/Video-Upload-Page/VideoUploadPage';
 
-export default class App extends Component {
+function App() {
 
-  state = {
-    videoId: VideoData[0].id
-  };
-  
-
-  getNewId = (id) => {
-    this.setState({videoId: id})
-  }
-
-  render() {
-    const currentVideoIndex = VideoData.findIndex(element => element.id === this.state.videoId);
-
-    return (
-      
+  return (
+    <BrowserRouter>
       <div className="App">
         <Header />
-        <Video currentVideo={VideoData[currentVideoIndex]} />
-        <BelowVideoSection currentVideo={VideoData[currentVideoIndex]} getNewId={this.getNewId} nextVideosList={NextVideosData} />
-        
-          {/* <NextVideoSection getNewId={this.getNewId} nextVideosList={NextVideosData} currentVideo={VideoData[currentVideoIndex].id} /> */}
-        
+        <Switch>
+          <Route path="/" exact component={HomePage} />
+          <Route path="/:id" component={HomePage} />
+          <Route path="/upload" component={VideoUploadPage} />
+        </Switch>
       </div>
-    )
-  }
+    </BrowserRouter>
+  )
 }
 
+export default App
