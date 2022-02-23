@@ -10,66 +10,57 @@ export default class HomePage extends Component {
     state = {
         VideoData: [],
         videoId: null,
-        videoComments:[],
     };
 
+    // gets full video list
     fetchVideoList() {
         axios.get('https://project-2-api.herokuapp.com/videos?api_key=' + apiKey)
         .then(results => {
             let videoData = results.data;
-            this.fetchVideoComments(videoData[0].id);
             this.setState({
                 VideoData: videoData,
-                videoId: videoData[0].id
-
+                videoId: videoData[0].id,
             })
             
         });
     }
-
-    fetchVideoComments(id) {
-        console.log(id)
-        axios.get('https://project-2-api.herokuapp.com/videos/' + id + '?api_key=' + apiKey)
-        .then(results => {
-            this.setState({
-                videoComments: results.data.comments
-            })
-        })
-    }
-       
+  
+    // onclick event listener to get clicked element id
     getNewId = (id) => {
         this.setState({videoId: id});
-        this.fetchVideoComments(id)
     }
 
+    //sets initial state
     componentDidMount() {
-        console.log('component did mount');
+        console.log('homepage did mount');
         this.fetchVideoList();
     }
 
     componentDidUpdate(prevProps, prevState,) {
-        console.log('homepage updated')
-        //console.log(prevProps)
-        //console.log(prevState)
-        //console.log(this.state)
-        //console.log('this.props.match.params.id:' + this.props.match.params.id)
-        if (this.props.match.params.id === this.state.videoId) {
-            console.log('id matches')
+        console.log('homepage updated');
+        console.log(prevState);
+        console.log(prevProps)
+        console.log('this.props.match.params.id:' + this.props.match.params.id);
+        if(this.props.match.params.id) {
+            const videoId = this.props.match.params.id;
+            console.log('home page id: ' + videoId);
+            console.log('about to check ids hp')
+            if (prevState.videoId !== videoId) {
+                this.setState({videoId: videoId})
+            }
+        } else if (!this.props.match.params.id && prevProps.match.params.id){
+            //current id is not defined and previous id is not defined
+            this.setState({
+                videoId: '84e96018-4022-434e-80bf-000ce4cd12b8',
+            })
         }
+        //run a check for undefined match.param and prev state for home page
         
     }
-
-//updating for on click
-//need to update for when clicking on the home screen
-//pass id to fetch comments function
-//fetch video list for next video section
-//remove id from next video sectin
 
     render () {
 
     const currentVideoIndex = this.state.VideoData.findIndex(element => element.id === this.state.videoId);
-    console.log('rendering');
-    console.log(this.state.VideoData);
 
     if (!this.state.videoId) {
         return null
@@ -80,10 +71,10 @@ export default class HomePage extends Component {
             <Video currentVideo={this.state.VideoData[currentVideoIndex]} />
             <BelowVideoSection
                 currentVideo={this.state.VideoData[currentVideoIndex]}
-                videoComments={this.state.videoComments}
                 getNewId={this.getNewId}
                 videosList={this.state.VideoData}
-                routerProps={this.props} />
+                routerProps={this.props} 
+                apiKey={apiKey}/>
         </div>
     )
 }
