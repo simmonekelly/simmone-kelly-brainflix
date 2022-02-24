@@ -31,3 +31,7 @@ function VideoUploadPage() {
 }
 
 export default VideoUploadPage
+
+//After form submission, it should notify
+//about “upload” and redirect to a home page
+//with the default video selected.

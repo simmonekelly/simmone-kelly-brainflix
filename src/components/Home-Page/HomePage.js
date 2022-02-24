@@ -10,6 +10,7 @@ export default class HomePage extends Component {
     state = {
         VideoData: [],
         videoId: null,
+        videoInfo: [],
     };
 
     // gets full video list
@@ -21,7 +22,9 @@ export default class HomePage extends Component {
                 VideoData: videoData,
                 videoId: videoData[0].id,
             })
-            
+        })
+        .catch(error => {
+            console.log(error)
         });
     }
   
@@ -29,32 +32,50 @@ export default class HomePage extends Component {
     getNewId = (id) => {
         this.setState({videoId: id});
     }
+    //Clicking on a video thumb in the side-videos section
+    //should update the URL. Do not use a click handler to
+    //update state for this scenario. This means you need to
+    //refactor Sprint 1 functionality to utilize the React
+    //Router for this Sprint.
 
     //sets initial state
     componentDidMount() {
-        console.log('homepage did mount');
         this.fetchVideoList();
     }
 
-    componentDidUpdate(prevProps, prevState,) {
-        console.log('homepage updated');
-        console.log(prevState);
-        console.log(prevProps)
-        console.log('this.props.match.params.id:' + this.props.match.params.id);
+    // calls to get video info from axios
+    fetchVideoInfo(id) {
+        axios.get('https://project-2-api.herokuapp.com/videos/' + id + '?api_key=' + apiKey)
+        .then(results => {
+            const videoInfo = results.data;
+            this.setState({
+                videoInfo: videoInfo,
+            })
+        })
+        .catch(error => {
+            console.log(error)
+        });
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        //checks if current state matches previous state to fetch video info
+        if (this.state.videoId !== prevState.videoId) {
+            this.fetchVideoInfo(this.state.videoId)
+        }
+        
+        //checks to see if id is available
         if(this.props.match.params.id) {
             const videoId = this.props.match.params.id;
-            console.log('home page id: ' + videoId);
-            console.log('about to check ids hp')
+
+            //checks to see if id param matches previous state id to then set state
             if (prevState.videoId !== videoId) {
                 this.setState({videoId: videoId})
             }
         } else if (!this.props.match.params.id && prevProps.match.params.id){
-            //current id is not defined and previous id is not defined
             this.setState({
-                videoId: '84e96018-4022-434e-80bf-000ce4cd12b8',
+                videoId: this.state.VideoData[0].id,
             })
         }
-        //run a check for undefined match.param and prev state for home page
         
     }
 
@@ -73,10 +94,9 @@ export default class HomePage extends Component {
                 currentVideo={this.state.VideoData[currentVideoIndex]}
                 getNewId={this.getNewId}
                 videosList={this.state.VideoData}
-                routerProps={this.props} 
-                apiKey={apiKey}/>
+                routerProps={this.props}
+                videoInfo={this.state.videoInfo}/>
         </div>
-    )
-}
+    )}
 }
 

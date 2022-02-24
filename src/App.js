@@ -22,3 +22,5 @@ function App() {
 }
 
 export default App
+
+//Clicking on the “Upload” button must link to the Video Upload Page.
