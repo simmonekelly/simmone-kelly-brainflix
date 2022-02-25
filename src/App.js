@@ -13,8 +13,8 @@ function App() {
         <Header />
         <Switch>
           <Route path="/" exact component={HomePage} />
-          <Route path="/:id" component={HomePage} />
           <Route path="/upload" component={VideoUploadPage} />
+          <Route path="/:id" component={HomePage} />
         </Switch>
       </div>
     </BrowserRouter>

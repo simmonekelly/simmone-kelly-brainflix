@@ -58,15 +58,17 @@ export default class HomePage extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
+        console.log('home page componenet did update')
         //checks if current state matches previous state to fetch video info
         if (this.state.videoId !== prevState.videoId) {
             this.fetchVideoInfo(this.state.videoId)
+            console.log('fetched video info')
         }
         
         //checks to see if id is available
         if(this.props.match.params.id) {
             const videoId = this.props.match.params.id;
-
+            console.log('checking video id') //why does this run so many times?
             //checks to see if id param matches previous state id to then set state
             if (prevState.videoId !== videoId) {
                 this.setState({videoId: videoId})
