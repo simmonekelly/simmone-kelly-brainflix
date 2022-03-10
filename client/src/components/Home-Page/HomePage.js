@@ -15,7 +15,7 @@ export default class HomePage extends Component {
 
     // gets full video list
     fetchVideoList() {
-        axios.get('https://project-2-api.herokuapp.com/videos?api_key=' + apiKey)
+        axios.get('http://localhost:8080/videos')
         .then(results => {
             let videoData = results.data;
             this.setState({
@@ -45,7 +45,7 @@ export default class HomePage extends Component {
 
     // calls to get video info from axios
     fetchVideoInfo(id) {
-        axios.get('https://project-2-api.herokuapp.com/videos/' + id + '?api_key=' + apiKey)
+        axios.get('http://localhost:8080/videos/' + id)
         .then(results => {
             const videoInfo = results.data;
             this.setState({
