@@ -1,15 +1,15 @@
 const express = require('express');
 const fs = require('fs');
 const router = express.Router();
+const { v4: uuidv4 } = require('uuid');
 
-router.get('/', (req,res) => {
+router.get('/', (_,res) => {
     fs.readFile('./data/video-details.json', 'utf8', (err, data) => {
         if(err) throw err;
         const videoData = JSON.parse(data);
         let newArray = [];
         
         videoData.forEach(video => {
-            console.log(video.id)
             newArray.push({
                 id: video.id,
                 title: video.title,
@@ -22,17 +22,76 @@ router.get('/', (req,res) => {
 })
 
 router.get('/:id', (req, res) => {
-    //console.log(req.params.id);
     let id = req.params.id;
 
     fs.readFile('./data/video-details.json', 'utf8', (err, data) => {
         if(err) throw err;
         const videoData = JSON.parse(data);
         let videoIndex = videoData.findIndex(video => video.id === id);
-        console.log(videoData[videoIndex]);
         res.json(videoData[videoIndex])
     })
 
+})
+
+router.post('/:id/comments', (req, res) => {
+    let id = req.params.id;
+    const { comment } = req.body;
+    console.log('recieved form request');
+    // const electricPokemon = JSON.stringify(response.data.pokemon)
+    // fs.writeFile('electric-pokemon.json', electricPokemon, (err) => {
+    //     if(err) throw err;
+    //     console.log('data has been saved')
+    // });
+
+    // const newComment = JSON.stringify(comment);
+
+    // fs.writeFile('./data/video-details.json', newComment, (err) => {
+    //     if(err) throw err;
+
+    // })
+
+
+    fs.readFile('./data/video-details.json', 'utf-8', (err, data) => {
+        if(err) throw err;
+        const videoData = JSON.parse(data);
+        let videoIndex = videoData.findIndex(video => video.id === id);
+        videoData[videoIndex].comments.push({
+            name: 'placeholder name' ,
+            comment: comment ,
+            likes: 0,
+            timestamps: Date.now(),
+       })
+        console.log(videoData[videoIndex].comments);
+        res.json(videoData[videoIndex])
+    })
+})
+
+router.post('/', (req, res) => {
+    //let id = req.params.id;
+    const { newVideo } = req.body;
+    console.log('recieved new video submisison');
+    console.log(newVideo)
+    
+    fs.readFile('./data/video-details.json', 'utf-8', (err, data) => {
+        if(err) throw err;
+        const videoData = JSON.parse(data);
+        console.log(videoData)
+        videoData.push({
+            title:"test",
+            channel:"test",
+            image: "",
+            description:"test description",
+            views: 0,
+            likes: 0,
+            duration: 0,
+            video: "url",
+            timestamp: Date.now(),
+            comments: [{}],
+            id: uuidv4(),
+        })
+         console.log(videoData);
+        res.json(videoData)
+    })
 })
 
 module.exports = router;

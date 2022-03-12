@@ -9,9 +9,12 @@ function CommentsForm(props) {
             <form className="comments-form">
                 <div className="comments-form_field">
                     <label form="name"><h2>JOIN THE CONVERSATION</h2></label>
-                    <textarea name="comment" id="comment" placeholder="Add a new comment"></textarea>
+                    <textarea name="comment" id="comment" placeholder="Add a new comment" onChange = {(e) => props.handleCommentInputChange(e.target.value)}></textarea>
                 </div>
-                <button type="submit" className="comments-form_button">
+                <button
+                    type="submit"
+                    className="comments-form_button"
+                    onClick = {(event) => props.commentHandler(event) }>
                     <img src={CommentIcon} alt="comment-icon" />
                     <p>COMMENT</p>
                 </button>

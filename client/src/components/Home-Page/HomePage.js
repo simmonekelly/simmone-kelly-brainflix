@@ -11,11 +11,12 @@ export default class HomePage extends Component {
         VideoData: [],
         videoId: null,
         videoInfo: [],
+        newComment: "",
     };
 
     // gets full video list
     fetchVideoList() {
-        axios.get('http://localhost:8080/videos')
+        axios.get('http://localhost:8080/videos?api_key=' + apiKey)
         .then(results => {
             let videoData = results.data;
             this.setState({
@@ -45,7 +46,7 @@ export default class HomePage extends Component {
 
     // calls to get video info from axios
     fetchVideoInfo(id) {
-        axios.get('http://localhost:8080/videos/' + id)
+        axios.get('http://localhost:8080/videos/' + id + '?api_key=' + apiKey)
         .then(results => {
             const videoInfo = results.data;
             this.setState({
@@ -80,6 +81,37 @@ export default class HomePage extends Component {
         
     }
 
+    //manages comment state change
+    handleCommentInputChange = (text) => {
+        this.setState({
+            newComment: text,
+        })
+    }
+
+    //comment form submisison
+    addComment = (e) => {
+        e.preventDefault();
+        
+        console.log(this.state.newComment)
+        axios.post('http://localhost:8080/videos/' + this.state.videoId + '/comments?api_key=' + apiKey, {
+            comment: this.state.newComment,
+          })
+        .then(data => {
+          this.setState({
+            videoInfo: data.data,
+          })
+        })
+    };
+
+    //manages upload form state change
+    // handleUploadInputChange = (text) => {
+    //     this.setState({
+    //         newComment: text,
+    //     })
+    // };
+
+
+
     render () {
 
     const currentVideoIndex = this.state.VideoData.findIndex(element => element.id === this.state.videoId);
@@ -96,7 +128,9 @@ export default class HomePage extends Component {
                 getNewId={this.getNewId}
                 videosList={this.state.VideoData}
                 routerProps={this.props}
-                videoInfo={this.state.videoInfo}/>
+                videoInfo={this.state.videoInfo}
+                commentHandler={this.addComment}
+                handleCommentInputChange={this.handleCommentInputChange} />
         </div>
     )}
 }

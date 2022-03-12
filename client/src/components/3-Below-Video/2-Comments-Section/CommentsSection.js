@@ -6,8 +6,8 @@ import avatar from '../../../assets/images/Mohan-muruge.jpg';
 
  
 function CommentsSection(props){
-    const {videoInfo} = props;
-
+    const {videoInfo, currentVideo, commentHandler, handleCommentInputChange} = props;
+    //console.log(props)
     if (videoInfo.length === 0) {
         return null
     }
@@ -17,7 +17,11 @@ function CommentsSection(props){
             <h3 className="comment-total">
                 {videoInfo.comments.length} Comments
             </h3>
-            <CommentsForm formAvatar={avatar}/>
+            <CommentsForm
+                formAvatar={avatar}
+                currentVideo={currentVideo}
+                commentHandler={commentHandler}
+                handleCommentInputChange={handleCommentInputChange} />
             {videoInfo.comments.map((element, index) =>
                 <PostedComments videoComments={element} key={'comments' + index} />)}
         </section>
