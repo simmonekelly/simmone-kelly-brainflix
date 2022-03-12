@@ -68,19 +68,20 @@ router.post('/:id/comments', (req, res) => {
 
 router.post('/', (req, res) => {
     //let id = req.params.id;
-    const { newVideo } = req.body;
+    const { title, description } = req.body;
     console.log('recieved new video submisison');
-    console.log(newVideo)
+    console.log(title)
+    console.log(description)
     
     fs.readFile('./data/video-details.json', 'utf-8', (err, data) => {
         if(err) throw err;
         const videoData = JSON.parse(data);
-        console.log(videoData)
+        //console.log(videoData)
         videoData.push({
-            title:"test",
-            channel:"test",
+            title: title,
+            channel:"channel placeholder",
             image: "",
-            description:"test description",
+            description: description,
             views: 0,
             likes: 0,
             duration: 0,
@@ -89,7 +90,7 @@ router.post('/', (req, res) => {
             comments: [{}],
             id: uuidv4(),
         })
-         console.log(videoData);
+         //console.log(videoData);
         res.json(videoData)
     })
 })

@@ -4,12 +4,31 @@ import UploadThumbnail from '../../assets/images/Upload-video-preview.jpg';
 import PublishIcon from '../../assets/images/icons/publish.svg';
 import { Input } from 'postcss';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+let apiKey = '2c4911e9-9ba1-4e47-9dc6-1054b805d4c7'
 
 export default class VideoUploadPage extends Component {
 
-    componentWillUnmount(){
-        window.alert("Upload Successful");
-    }
+    //upload form submisison
+    addNewVideo = (e) => {
+        e.preventDefault();
+        
+        console.log(this.form.title.value, this.form.description.value)
+        axios.post('http://localhost:8080/videos?api_key=' + apiKey, {
+            title: this.form.title.value,
+            description: this.form.description.value ,
+          })
+        .then(data => {
+            console.log(data)
+            // push to home page/new file
+        })
+    };
+
+
+
+    // componentWillUnmount(){
+    //     window.alert("Upload Successful");
+    // }
 
     render(){
 
@@ -19,21 +38,24 @@ export default class VideoUploadPage extends Component {
                 <h2 className="uploadvideo-subtitle">Video Thumbnail</h2>
                 <div className="uploadvideo-form_container">
                 <img src={UploadThumbnail} className="uploadvideo-form_thumbnail"/>
-                <form className="uploadvideo-form">
+                <form className="uploadvideo-form"
+                    onSubmit = {this.addNewVideo} ref={(form) => (this.form = form)}>
                     <div className="uploadvideo-form_field">
-                        <label form="video-title"><h2>Title Your Video</h2></label>
-                        <input type="text" name="video-title" id="video-title" placeholder="Add a title to your video"></input>
+                        <label form="title"><h2>Title Your Video</h2></label>
+                        <input
+                            type="text"
+                            name="title"
+                            id="title"
+                            placeholder="Add a title to your video"></input>
                     </div>
                     <div className="uploadvideo-form_field">
-                        <label form="video-description"><h2>Add a Video Desctiption</h2></label>
-                        <textarea name="video-description" id="video-description" placeholder="Add a description to your video"></textarea>
+                        <label form="description"><h2>Add a Video Desctiption</h2></label>
+                        <textarea name="description" id="description" placeholder="Add a description to your video"></textarea>
                     </div>
-                    <Link to="/" className="header-button_link">
-                        <button type="submit" className="uploadvideo-form_button">
-                            <img src={PublishIcon} alt="uploadvideo-icon" />
-                            <p>Publish</p>
-                        </button>
-                    </Link>
+                    <button type="submit" className="uploadvideo-form_button">
+                        <img src={PublishIcon} alt="uploadvideo-icon" />
+                        <p>Publish</p>
+                    </button>
                 </form>
             </div>
             </div>

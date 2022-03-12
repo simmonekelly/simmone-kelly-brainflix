@@ -103,13 +103,6 @@ export default class HomePage extends Component {
         })
     };
 
-    //manages upload form state change
-    // handleUploadInputChange = (text) => {
-    //     this.setState({
-    //         newComment: text,
-    //     })
-    // };
-
 
 
     render () {
