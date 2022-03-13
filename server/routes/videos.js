@@ -37,19 +37,6 @@ router.post('/:id/comments', (req, res) => {
     let id = req.params.id;
     const { comment } = req.body;
     console.log('recieved form request');
-    // const electricPokemon = JSON.stringify(response.data.pokemon)
-    // fs.writeFile('electric-pokemon.json', electricPokemon, (err) => {
-    //     if(err) throw err;
-    //     console.log('data has been saved')
-    // });
-
-    // const newComment = JSON.stringify(comment);
-
-    // fs.writeFile('./data/video-details.json', newComment, (err) => {
-    //     if(err) throw err;
-
-    // })
-
 
     fs.readFile('./data/video-details.json', 'utf-8', (err, data) => {
         if(err) throw err;
@@ -61,7 +48,13 @@ router.post('/:id/comments', (req, res) => {
             likes: 0,
             timestamps: Date.now(),
        })
-        console.log(videoData[videoIndex].comments);
+
+       const addComments = JSON.stringify(videoData)
+        fs.writeFile('./data/video-details.json', addComments, (err) => {
+            if(err) throw err;
+            console.log('data has been saved')
+        });
+        //console.log(videoData[videoIndex].comments);
         res.json(videoData[videoIndex])
     })
 })
@@ -91,8 +84,25 @@ router.post('/', (req, res) => {
             id: uuidv4(),
         })
          //console.log(videoData);
+        //res.json(videoData)
+        const newVideoData = JSON.stringify(videoData)
+
+        fs.writeFile('./data/video-details.json', newVideoData, (err) => {
+            if(err) throw err;
+            console.log('data has been saved')
+        });
+
         res.json(videoData)
     })
+
+
+
 })
 
 module.exports = router;
+
+// const electricPokemon = JSON.stringify(response.data.pokemon)
+    // fs.writeFile('electric-pokemon.json', electricPokemon, (err) => {
+    //     if(err) throw err;
+    //     console.log('data has been saved')
+    // });
