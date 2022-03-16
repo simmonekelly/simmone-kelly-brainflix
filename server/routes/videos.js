@@ -3,6 +3,7 @@ const fs = require('fs');
 const router = express.Router();
 const { v4: uuidv4 } = require('uuid');
 
+//reads all data and only responds with specific key/values
 router.get('/', (_,res) => {
     fs.readFile('./data/video-details.json', 'utf8', (err, data) => {
         if(err) throw err;
@@ -21,6 +22,7 @@ router.get('/', (_,res) => {
     })
 })
 
+//reads data file, finds specific video data and gives as a response
 router.get('/:id', (req, res) => {
     let id = req.params.id;
 
@@ -33,6 +35,7 @@ router.get('/:id', (req, res) => {
 
 })
 
+//takes in new comment, adds it to file and overrites full data file
 router.post('/:id/comments', (req, res) => {
     let id = req.params.id;
     const { comment } = req.body;
@@ -46,7 +49,8 @@ router.post('/:id/comments', (req, res) => {
             name: 'placeholder name' ,
             comment: comment ,
             likes: 0,
-            timestamps: Date.now(),
+            id: uuidv4(),
+            timestamp: Date.now(),
        })
 
        const addComments = JSON.stringify(videoData)
@@ -54,22 +58,47 @@ router.post('/:id/comments', (req, res) => {
             if(err) throw err;
             console.log('data has been saved')
         });
-        //console.log(videoData[videoIndex].comments);
+
         res.json(videoData[videoIndex])
     })
 })
 
+//for deleting comments
+router.delete('/:videoId/comments/:commentId', (req, res) => {
+
+    const { videoId, commentId } = req.params;
+
+    fs.readFile('./data/video-details.json', 'utf-8', (err, data) => {
+        if(err) throw err;
+        const videoData = JSON.parse(data);
+
+       const foundVideo = videoData.find((video) => video.id === videoId);
+
+        const deletedComment = foundVideo.comments.findIndex((comment) => comment.id === commentId);
+        
+        foundVideo.comments.splice(deletedComment, 1)
+
+        const newVideoData = JSON.stringify(videoData)
+
+        fs.writeFile('./data/video-details.json', newVideoData, (err) => {
+            if(err) throw err;
+            console.log('data has been saved')
+        });
+
+        res.json(videoData)
+    })
+})
+
+//takes in video upload and adds to full video list
 router.post('/', (req, res) => {
-    //let id = req.params.id;
+    
     const { title, description } = req.body;
     console.log('recieved new video submisison');
-    console.log(title)
-    console.log(description)
     
     fs.readFile('./data/video-details.json', 'utf-8', (err, data) => {
         if(err) throw err;
         const videoData = JSON.parse(data);
-        //console.log(videoData)
+        
         videoData.push({
             title: title,
             channel:"channel placeholder",
@@ -80,11 +109,9 @@ router.post('/', (req, res) => {
             duration: 0,
             video: "url",
             timestamp: Date.now(),
-            comments: [{}],
-            id: uuidv4(),
+            comments: [],
         })
-         //console.log(videoData);
-        //res.json(videoData)
+
         const newVideoData = JSON.stringify(videoData)
 
         fs.writeFile('./data/video-details.json', newVideoData, (err) => {
@@ -100,9 +127,3 @@ router.post('/', (req, res) => {
 })
 
 module.exports = router;
-
-// const electricPokemon = JSON.stringify(response.data.pokemon)
-    // fs.writeFile('electric-pokemon.json', electricPokemon, (err) => {
-    //     if(err) throw err;
-    //     console.log('data has been saved')
-    // });

@@ -6,7 +6,7 @@ import avatar from '../../../assets/images/Mohan-muruge.jpg';
 
  
 function CommentsSection(props){
-    const {videoInfo, currentVideo, commentHandler, handleCommentInputChange} = props;
+    const {videoInfo, currentVideo, commentHandler, handleCommentInputChange, deleteComment} = props;
     //console.log(props)
     if (videoInfo.length === 0) {
         return null
@@ -23,7 +23,12 @@ function CommentsSection(props){
                 commentHandler={commentHandler}
                 handleCommentInputChange={handleCommentInputChange} />
             {videoInfo.comments.map((element, index) =>
-                <PostedComments videoComments={element} key={'comments' + index} />)}
+                <PostedComments
+                    videoComments={element}
+                    key={'comments' + index}
+                    currentVideo={currentVideo}
+                    deleteComment={deleteComment}
+                    id={index} />)}
         </section>
     )
 }

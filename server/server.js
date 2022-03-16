@@ -26,6 +26,7 @@ app.use((req, res, next) => {
     }
 })
 
+//route for videos
 app.use('/videos', videoRoutes);
 
 app.listen(8080, () => {

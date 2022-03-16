@@ -14,6 +14,11 @@ export default class HomePage extends Component {
         newComment: "",
     };
 
+    //sets initial state
+    componentDidMount() {
+        this.fetchVideoList();
+    }
+
     // gets full video list
     fetchVideoList() {
         axios.get('http://localhost:8080/videos?api_key=' + apiKey)
@@ -33,16 +38,6 @@ export default class HomePage extends Component {
     getNewId = (id) => {
         this.setState({videoId: id});
     }
-    //Clicking on a video thumb in the side-videos section
-    //should update the URL. Do not use a click handler to
-    //update state for this scenario. This means you need to
-    //refactor Sprint 1 functionality to utilize the React
-    //Router for this Sprint.
-
-    //sets initial state
-    componentDidMount() {
-        this.fetchVideoList();
-    }
 
     // calls to get video info from axios
     fetchVideoInfo(id) {
@@ -61,7 +56,7 @@ export default class HomePage extends Component {
     componentDidUpdate(prevProps, prevState) {
         
         //checks if current state matches previous state to fetch video info
-        if (this.state.videoId !== prevState.videoId) {
+        if ((this.state.videoId !== prevState.videoId) || (this.state.videoInfo !== prevState.videoInfo)) {
             this.fetchVideoInfo(this.state.videoId);
         }
         
@@ -92,7 +87,6 @@ export default class HomePage extends Component {
     addComment = (e) => {
         e.preventDefault();
         
-        console.log(this.state.newComment)
         axios.post('http://localhost:8080/videos/' + this.state.videoId + '/comments?api_key=' + apiKey, {
             comment: this.state.newComment,
           })
@@ -100,9 +94,19 @@ export default class HomePage extends Component {
           this.setState({
             videoInfo: data.data,
           })
-        })
+        });
+        // this.commentsform.reset();
     };
 
+    deleteComment = (commentId, videoId) => {
+
+        axios.delete('http://localhost:8080/videos/' + videoId + '/comments/' + commentId + '?api_key=' + apiKey)
+        .then(data => {
+            this.setState({
+                VideoData: data.data, //needs to push refresh, cant refresh with if statement
+            })
+        });
+    };
 
 
     render () {
@@ -123,6 +127,7 @@ export default class HomePage extends Component {
                 routerProps={this.props}
                 videoInfo={this.state.videoInfo}
                 commentHandler={this.addComment}
+                deleteComment={this.deleteComment}
                 handleCommentInputChange={this.handleCommentInputChange} />
         </div>
     )}

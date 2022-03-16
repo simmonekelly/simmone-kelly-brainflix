@@ -1,8 +1,10 @@
 import React from 'react'
+import deleteicon from '../../../assets/images/icons/delete.svg'
 
 function PostedComments(props) {
-
-    const {videoComments} = props;
+    //console.log(props)
+    const {videoComments, currentVideo, deleteComment, id} = props;
+    //console.log(id)
     
     return (
         <div className="comment-card">
@@ -18,6 +20,10 @@ function PostedComments(props) {
                         }).format(videoComments.timestamp)}</p>
                 </div>
                 <p>{videoComments.comment}</p>
+                <img
+                    className="delete-icon"
+                    src={deleteicon}
+                    onClick={ () => deleteComment(id, currentVideo) } />
             </div>
         </div>
     )

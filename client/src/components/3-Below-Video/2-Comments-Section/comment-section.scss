@@ -89,6 +89,12 @@
     padding: 24px 0 16px;
 }
 
+.delete-icon{
+    max-width: 25px;
+    padding-top: 16px;
+    color: $brainflix-black;
+}
+
 .comment-card {
     display: flex;
     flex-direction: row;
