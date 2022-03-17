@@ -72,20 +72,20 @@ router.delete('/:videoId/comments/:commentId', (req, res) => {
         if(err) throw err;
         const videoData = JSON.parse(data);
 
-       const foundVideo = videoData.find((video) => video.id === videoId);
+       const foundVideo = videoData.findIndex((video) => video.id === videoId);
 
-        const deletedComment = foundVideo.comments.findIndex((comment) => comment.id === commentId);
+        const deletedComment = videoData[foundVideo].comments.findIndex((comment) => comment.id === commentId);
         
-        foundVideo.comments.splice(deletedComment, 1)
+        videoData[foundVideo].comments.splice(deletedComment, 1)
 
         const newVideoData = JSON.stringify(videoData)
 
         fs.writeFile('./data/video-details.json', newVideoData, (err) => {
             if(err) throw err;
-            console.log('data has been saved')
+            console.log('comment has been removed')
         });
 
-        res.json(videoData)
+        res.json(videoData[foundVideo])
     })
 })
 
@@ -102,7 +102,7 @@ router.post('/', (req, res) => {
         videoData.push({
             title: title,
             channel:"channel placeholder",
-            image: "",
+            image: "../.",
             description: description,
             views: 0,
             likes: 0,

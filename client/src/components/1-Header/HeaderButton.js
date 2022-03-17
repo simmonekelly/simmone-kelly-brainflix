@@ -6,7 +6,7 @@ function HeaderButton() {
     return (
         <Link to="/upload" className="header-button_link">
             <button type="submit" className="header-button">
-                <img src={UploadIcon} className="header-button_logo" alt="upload" />
+                <img src={"http://localhost:8080/images/icons/upload.svg"} className="header-button_logo" alt="upload" />
                 <p>UPLOAD</p>
             </button>
         </Link>

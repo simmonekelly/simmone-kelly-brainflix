@@ -7,7 +7,7 @@ function HeaderForm(props) {
             <div className="header-form_field">
                 <input type="text" name="header_search" id="search" placeholder="Search" />
             </div>
-            <img src={props.avatar} className="header-form_avatar mobile-avatar" />
+            <img src={"http://localhost:8080/images/Mohan-muruge.jpg"} className="header-form_avatar mobile-avatar" />
         </form>
     )
 }

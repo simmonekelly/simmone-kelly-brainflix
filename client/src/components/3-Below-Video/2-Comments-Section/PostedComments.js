@@ -22,7 +22,7 @@ function PostedComments(props) {
                 <p>{videoComments.comment}</p>
                 <img
                     className="delete-icon"
-                    src={deleteicon}
+                    src={"http://localhost:8080/images/icons/delete.svg"}
                     onClick={ () => deleteComment(id, currentVideo) } />
             </div>
         </div>

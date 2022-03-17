@@ -28,7 +28,7 @@ export default class VideoUploadPage extends Component {
         <h1 className="uploadvideo-title">Upload Video</h1>
         <h2 className="uploadvideo-subtitle">Video Thumbnail</h2>
         <div className="uploadvideo-form_container">
-          <img src={UploadThumbnail} className="uploadvideo-form_thumbnail" />
+          <img src={"http://localhost:8080/images/Upload-video-preview.jpg"} className="uploadvideo-form_thumbnail" />
           <form
             className="uploadvideo-form"
             onSubmit={this.addNewVideo}
@@ -56,7 +56,7 @@ export default class VideoUploadPage extends Component {
               ></textarea>
             </div>
             <button type="submit" className="uploadvideo-form_button">
-              <img src={PublishIcon} alt="uploadvideo-icon" />
+              <img src={"http://localhost:8080/images/icons/publish.svg"} alt="uploadvideo-icon" />
               <p>Publish</p>
             </button>
           </form>

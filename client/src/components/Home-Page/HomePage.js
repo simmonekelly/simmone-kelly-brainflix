@@ -10,7 +10,9 @@ export default class HomePage extends Component {
     state = {
         VideoData: [],
         videoId: null,
-        videoInfo: [],
+        videoInfo: {
+            comments: []
+        },
         newComment: "",
     };
 
@@ -56,7 +58,8 @@ export default class HomePage extends Component {
     componentDidUpdate(prevProps, prevState) {
         
         //checks if current state matches previous state to fetch video info
-        if ((this.state.videoId !== prevState.videoId) || (this.state.videoInfo !== prevState.videoInfo)) {
+        if ((this.state.videoId !== prevState.videoId) || (this.state.videoInfo.comments.length !== prevState.videoInfo.comments.length)) {
+            
             this.fetchVideoInfo(this.state.videoId);
         }
         
@@ -102,8 +105,9 @@ export default class HomePage extends Component {
 
         axios.delete('http://localhost:8080/videos/' + videoId + '/comments/' + commentId + '?api_key=' + apiKey)
         .then(data => {
+            console.log(data.data)
             this.setState({
-                VideoData: data.data, //needs to push refresh, cant refresh with if statement
+                videoInfo: data.data,
             })
         });
     };

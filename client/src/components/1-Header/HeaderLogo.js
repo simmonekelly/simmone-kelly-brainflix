@@ -6,7 +6,7 @@ function HeaderLogo() {
 
     return (
         <Link to="/">
-            <img src={BrainFlixLogo}
+            <img src={"http://localhost:8080/images/logos/BrainFlix-logo.svg"}
                 className="site-logo header-logo"
                 alt="logo"
                 />

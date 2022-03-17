@@ -5,7 +5,7 @@ function CommentsForm(props) {
     
     return (
         <div className="comments-form_container">
-            <img src={props.formAvatar} className="comments-form_avatar"/>
+            <img src={"http://localhost:8080/images/Mohan-muruge.jpg"} className="comments-form_avatar"/>
             <form className="comments-form" id="commentsform">
                 <div className="comments-form_field">
                     <label form="name"><h2>JOIN THE CONVERSATION</h2></label>
@@ -15,7 +15,7 @@ function CommentsForm(props) {
                     type="submit"
                     className="comments-form_button"
                     onClick = {(event) => props.commentHandler(event) }>
-                    <img src={CommentIcon} alt="comment-icon" />
+                    <img src={"http://localhost:8080/images/icons/add_comment.svg"} alt="comment-icon" />
                     <p>COMMENT</p>
                 </button>
             </form>

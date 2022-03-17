@@ -17,11 +17,11 @@ function VideoDetails(props) {
             </div>
             <div className="video-info_mobile">
                 <div className="video-info_views-container info_top-row">
-                    <img src={viewsIcon}/>
+                    <img src={"http://localhost:8080/images/icons/views.svg"}/>
                     <p>{views}</p>
                 </div>
                 <div className="video-info_likes-container">
-                    <img src={likesIcon}/>
+                    <img src={"http://localhost:8080/images/icons/likes.svg"}/>
                     <p>{likes}</p>
                 </div>
             </div>

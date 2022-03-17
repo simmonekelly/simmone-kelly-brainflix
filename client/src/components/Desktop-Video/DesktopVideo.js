@@ -11,8 +11,3 @@ function DesktopVideo(props) {
 }
 
 export default DesktopVideo
-
-
-{/* <section className="desktop-video">
-            <img src={props.currentVideo.image} className="desktop-video_image" />
-        </section> */}
