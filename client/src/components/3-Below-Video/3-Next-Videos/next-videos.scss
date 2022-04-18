@@ -1,0 +1,71 @@
+@use '../../../styles/partials/colors-fonts' as *;
+
+.next-videos{
+    padding: 24px 16px 0;
+
+    @include tablet {
+        padding: 24px 36px 0;
+    }
+
+    @include desktop {
+        width: 25%;
+        padding-right: 0;
+    }
+    
+    &_link {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    &_header {
+        padding-bottom: 16px;
+    }
+
+    &_container {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        align-content: center;
+        padding-bottom: 16px;
+        justify-content: space-between;
+        height: 65px;
+
+        @include tablet {
+            width: 45%;
+        }
+
+        @include desktop {
+            width: 100%;
+        }
+    }
+
+    &_image-container{
+        width: 35%;
+        height: inherit;
+
+        @include tablet {
+            
+        }
+
+        @include desktop {
+            height: 65px;
+        }
+        
+    }
+
+    &_image {
+        width: 100%;
+        height: 100%;
+        border-radius: 4px;
+        object-fit: cover;
+    }
+
+    &_text-contianer {
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        height: inherit;
+        justify-content: space-between;
+    }
+
+}

@@ -1,0 +1,24 @@
+@use '../../styles/partials/colors-fonts' as *;
+
+.video {
+
+    @include tablet {
+        display: flex;
+        justify-content: center;
+        background-color: $brainflix-darkblack;
+    }
+
+    @include desktop {
+        // display: none;
+    }
+
+    video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        @include tablet {
+            width: 90%;
+        }
+    }
+   
+}
