@@ -1,10 +1,10 @@
-# Getting Started with Create React App
+# BRAINFLIX SERVER/API DOCUMENTATION
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+In the client directory, you can run:
 
 ### `npm start`
 
@@ -14,57 +14,123 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## API Overview
+- The url for the API is `http://localhost:8080`
+- Every "video" object will contain unique details however the video link will be the same
+- The API comes seeded with a list of videos
+  - Each seeded video will contain three default comments
+- **Note:** This API has a temporary memory. It may restart intermittently and forget all videos and comments that you have created (except for the three default comments)
 
-### `npm run build`
+## API Errors
+- This API may return a 400 or 404 error
+#### Example error body
+```json
+{
+  "message": "No video with that id exists"
+}
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Routes
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### GET `/videos`
+- Returns an array of video objects 
+- Contains only enough information to display in side bar
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### Response body example
+```json
+[
+    {   
+        "id": "1af0jruup5gu", 
+        "title": "BMX Rampage: 2018 Highlights", 
+        "channel": "Red Cow", 
+        "image": "https://i.imgur.com/l2Xfgpl.jpg" 
+    },
+    { 
+        "id": "1ainjruutd1j", 
+        "title": "Become A Travel Pro In One Easy Lesson", 
+        "channel": "Todd Welch", 
+        "image": "https://i.imgur.com/5qyCZrD.jpg"
+    }
+]
+```
 
-### `npm run eject`
+### GET `/videos/:id`
+- `:id` must be swapped out with the id of a video as found in the list of videos
+- Returns a detailed object of a single video
+    -  Details include the list of comments for that video
+- Example response body
+```json
+{ 
+        "id": "1af0jruup5gu",
+        "title": "BMX Rampage: 2018 Highlights",
+        "channel": "Red Cow",
+        "image": "https://i.imgur.com/l2Xfgpl.jpg",
+        "description": "On a gusty day in Southern Utah, a group of 25 daring mountain bikers blew the doors off what is possible on two wheels, unleashing some of the biggest moments the sport has ever seen. While mother nature only allowed for one full run before the conditions made it impossible to ride, that was all that was needed for event veteran Kyle Strait, who won the event for the second time -- eight years after his first Red Cow Rampage title",
+        "views": "1,001,023",
+        "likes": "110,985",
+        "duration": "4:01",
+        "video": "https://project-2-api.herokuapp.com/stream",
+        "timestamp": 1545162149000,
+        "comments": [
+            {
+                "name": "Micheal Lyons",
+                "comment": "They BLEW the ROOF off at their last show, once everyone started figuring out they were going. This is still simply the greatest opening of concert I have EVER witnessed.",
+                "id": "1ab6d9f6-da38-456e-9b09-ab0acd9ce818",
+                "likes": 0,
+                "timestamp": 1545162149000
+            },
+            {
+                "name": "Gary Wong",
+                "comment": "Every time I see him shred I feel so motivated to get off my couch and hop on my board. He’s so talented! I wish I can ride like him one day so I can really enjoy myself!",
+                "id": "cc6f173d-9e9d-4501-918d-bc11f15a8e14",
+                "likes": 0,
+                "timestamp": 1544595784046
+            },
+            {
+                "name": "Theodore Duncan",
+                "comment": "How can someone be so good!!! You can tell he lives for this and loves to do it every day. Everytime I see him I feel instantly happy! He’s definitely my favorite ever!",
+                "id": "993f950f-df99-48e7-bd1e-d95003cc98f1",
+                "likes": 0,
+                "timestamp": 1542262984046
+            }
+        ] 
+    }
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## The following endpoints are not required to satisfy the requirements
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### POST `/videos/:id/comments`
+- `:id` must be swapped out with the numeric id of a video as found in the list of videos
+- Creates a new comment for a specific video
+- Post body example
+```
+{
+	"name": "Nigel",
+	"comment": "This is a test"
+}
+```
+- response body example
+```
+{
+  "name": "Nigel",
+  "comment": "This is a test",
+  "id": 4,
+  "timestamp": 1531857374673
+}
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### DELETE `/videos/:videoId/comments/:commentId`
+- Deletes the given comment and returns it in the response body
+- `:videoId` must be swapped out with the numeric id of a video as found in the list of videos
+- `:commentId` must be swapped out with the numeric id of a comment as found in the list of comments for the given video
+- **this endpoint is not mandatory**. It is present for those interested in clearing out comments or going beyond the assignment requirements
+- Response body example
+```
+{
+    "name": "Ian",
+    "comment": "You could make $5000 a day too!",
+    "id": 1,
+    "timestamp": 1530744338878
+}
+```
