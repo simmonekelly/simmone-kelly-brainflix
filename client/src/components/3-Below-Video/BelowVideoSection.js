@@ -4,7 +4,7 @@ import NextVideoSection from './3-Next-Videos/NextVideoSection';
 import VideoInfo from './1-Video-Info/VideoInfo';
 
 function BelowVideoSection(props) {
-    const { currentVideo, getNewId, videosList, routerProps, videoInfo, commentHandler, handleCommentInputChange, deleteComment } = props;
+    const { currentVideo, getNewId, videosList, routerProps, videoInfo, commentHandler, handleCommentInputChange, commentValue, deleteComment } = props;
     
     return (
         <div className="desktop-container">
@@ -19,6 +19,7 @@ function BelowVideoSection(props) {
                     videoInfo={videoInfo}
                     commentHandler={commentHandler}
                     handleCommentInputChange={handleCommentInputChange}
+                    commentValue={commentValue}
                     deleteComment={deleteComment} />
             </div>
             <NextVideoSection

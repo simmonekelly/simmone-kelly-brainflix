@@ -96,16 +96,15 @@ export default class HomePage extends Component {
         .then(data => {
           this.setState({
             videoInfo: data.data,
+            newComment: "",
           })
         });
-        // this.commentsform.reset();
     };
 
     deleteComment = (commentId, videoId) => {
 
         axios.delete('http://localhost:8080/videos/' + videoId + '/comments/' + commentId + '?api_key=' + apiKey)
         .then(data => {
-            console.log(data.data)
             this.setState({
                 videoInfo: data.data,
             })
@@ -131,6 +130,7 @@ export default class HomePage extends Component {
                 routerProps={this.props}
                 videoInfo={this.state.videoInfo}
                 commentHandler={this.addComment}
+                commentValue={this.state.newComment}
                 deleteComment={this.deleteComment}
                 handleCommentInputChange={this.handleCommentInputChange} />
         </div>
